@@ -1,0 +1,9 @@
+{
+  "wholeWeek": ["midWeekHymns", "weekEndHymns"],
+  "wholeWeekOrganist": [
+    "midWeekHymns",
+    "midWeekPreludes",
+    "weekEndHymns",
+    "weekEndPreludes"
+  ]
+}
