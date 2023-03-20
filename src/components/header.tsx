@@ -5,26 +5,10 @@ interface IPageHeader {
   setMessage: any;
 }
 
-const PageHeader = ({ message, setMessage }: IPageHeader) => {
-  const navigate = useNavigate();
-
-  function handleButtonAction() {
-    setMessage("Welcome to The Hymn Sorter");
-    navigate("");
-  }
+const PageHeader = ({ message }: IPageHeader) => {
   return (
     <div className="flex flex-row w-full justify-center items-center h-[10%] bg-blackHeader text-white">
       <div className="text-4xl">{message}</div>
-      <div className="flex flex-row justify-center">
-        {message == "Let's Start Sorting" ? (
-          <button
-            className="bg-blueDark rounded p-2"
-            onClick={() => handleButtonAction()}
-          >
-            Home
-          </button>
-        ) : null}
-      </div>
     </div>
   );
 };

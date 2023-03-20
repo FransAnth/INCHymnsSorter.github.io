@@ -14,7 +14,7 @@ function App() {
         <Routes>
           <Route path="" element={<Layout />}>
             <Route index element={<MainPage />} />
-            <Route path="sorting-page/*" element={<SortingPage />} />
+            <Route path="sorting-page/:id" element={<SortingPage />} />
           </Route>
         </Routes>
       </Suspense>

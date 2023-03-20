@@ -1,14 +1,20 @@
 import { useEffect, useState } from "react";
-import MenuButton from "../components/menu-button";
+import { useNavigate, useOutletContext, useParams } from "react-router-dom";
+import OrganistHymnsWholeWeek from "../data/sorting-conditions/organists/whole-week.json";
+import OrganistsWholeWeek from "../components/sorting-conditions/organists/whole-week";
+import PageCommingSoon from "../components/page-comming-soon";
 
 const SortingPage = () => {
-  const [hymnCollection, setHymnCollection] = useState<any>([]);
+  const [hymnCollection, setHymnCollection] = useState<any>(
+    OrganistHymnsWholeWeek
+  );
+  const [setMessage]: any = useOutletContext();
+  const navigate = useNavigate();
+  const { id } = useParams();
 
-  function addCollection() {
-    const tempCollection = hymnCollection;
-    tempCollection.push({ sample: [1, 2, 3] });
-
-    setHymnCollection(tempCollection);
+  function handleButtonAction() {
+    setMessage("Welcome to The Hymn Sorter");
+    navigate("/");
   }
 
   useEffect(() => {
@@ -16,15 +22,21 @@ const SortingPage = () => {
   }, [hymnCollection]);
 
   return (
-    <div className="flex flex-col w-full bg-blueDarkest h-[90%] p-10">
-      <div>
-        <MenuButton
-          label="Whole Week"
-          id="wholeWeek"
-          isForOrganists={false}
-          setHeaderMessage={addCollection}
-        />
+    <div className="flex flex-col w-full bg-blueDarkest h-[90%] px-10 pt-5">
+      <div className="flex flex-row w-full justify-end">
+        <button
+          className="bg-red rounded py-2 text-sm  px-5 text-white"
+          onClick={() => handleButtonAction()}
+        >
+          Go Back
+        </button>
       </div>
+      {id == "wholeWeekOrganist" ? (
+        <OrganistsWholeWeek
+          hymnCollections={[hymnCollection, setHymnCollection]}
+        />
+      ) : null}
+      {id != "wholeWeekOrganist" ? <PageCommingSoon /> : null}
     </div>
   );
 };

@@ -9,6 +9,7 @@ module.exports = {
         blueDark: "#004052",
         blueLight: "#005066",
         blueLigthest: "#00607a",
+        red: "#FF5959",
       },
       fontFamily: {
         roboto: ["Roboto"],
