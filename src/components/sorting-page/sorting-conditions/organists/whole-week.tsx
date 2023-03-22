@@ -1,8 +1,8 @@
-import InputFields from "../../input-fields";
+import InputFields from "../../../input-fields";
 
-const OrganistsWholeWeek = ({ hymnCollections }: any) => {
-  const actualHymnInputHeight = "h-[7.5rem] w-[120px]";
-  const preludeRegistersInputHeight = "h-[11.5rem] w-[184px]";
+const OrganistsWholeWeek = ({ sortedHymnsState }: any) => {
+  const actualHymnInputHeight = "w-[120px]";
+  const preludeRegistersInputHeight = "w-[312px]";
 
   function generateRegisters(inputCount: any) {
     let registers = [];
@@ -22,18 +22,18 @@ const OrganistsWholeWeek = ({ hymnCollections }: any) => {
         <span className="text-white text-2xl">MidWeek</span>
         <div className="flex flex-row justify-center gap-10 pt-3 pb-10">
           <InputFields
-            hymnCollections={hymnCollections}
             attributeName="hymnSingingMidweek"
             registers={actualHymnRegisters}
             title={"Hymn Singing"}
             style={actualHymnInputHeight}
+            sortedHymnsState={sortedHymnsState}
           />
           <InputFields
-            hymnCollections={hymnCollections}
             attributeName="preludesMidweek"
             registers={preludeRegisters}
             title={"Preludes"}
             style={preludeRegistersInputHeight}
+            sortedHymnsState={sortedHymnsState}
           />
         </div>
       </div>
@@ -42,18 +42,18 @@ const OrganistsWholeWeek = ({ hymnCollections }: any) => {
         <span className="text-white text-2xl">Weekend</span>
         <div className="flex flex-row justify-center gap-10 pt-3 pb-10">
           <InputFields
-            hymnCollections={hymnCollections}
             attributeName="hymnSingingWeekend"
             registers={actualHymnRegisters}
             title={"Hymn Singing"}
             style={actualHymnInputHeight}
+            sortedHymnsState={sortedHymnsState}
           />
           <InputFields
-            hymnCollections={hymnCollections}
             attributeName="preludesWeekend"
             registers={preludeRegisters}
             title={"Preludes"}
             style={preludeRegistersInputHeight}
+            sortedHymnsState={sortedHymnsState}
           />
         </div>
       </div>

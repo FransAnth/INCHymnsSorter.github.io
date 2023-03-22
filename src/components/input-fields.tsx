@@ -1,23 +1,34 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
+import sortingCondition from "../data/sorting-conditions/sorting-condition.json";
 
 const InputFields = ({
-  hymnCollections,
   attributeName,
   registers,
   title,
   style,
+  sortedHymnsState,
 }: any) => {
   const { register, getValues } = useForm();
-  const [hymnCollection, setHymnCollection] = hymnCollections;
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [sortedHymns, setSortedHymns] = sortedHymnsState;
 
   function handleLocalSubmit() {
     const formValue = getValues();
-    const tempHymnCollection = { ...hymnCollection };
-    registers.map((value: any) => {
-      tempHymnCollection[attributeName].push(formValue[value]);
+    const tempSortedHymns = { ...sortedHymns };
+    registers.forEach((name: any) => {
+      const value = formValue[name];
+      sortingCondition.forEach((data: any, index: number) => {
+        if (
+          Number(value) < data.condition[1] &&
+          Number(value) >= data.condition[0]
+        ) {
+          tempSortedHymns[attributeName][data.id].push(value);
+        }
+      });
     });
-    setHymnCollection(tempHymnCollection);
+    setSortedHymns(tempSortedHymns);
+    setIsSubmitted(true);
   }
 
   return (
@@ -25,7 +36,9 @@ const InputFields = ({
       <span className="w-fit border-0 border-b-2 border-b-blueLigthest text-white">
         {title}
       </span>
-      <div className={`flex flex-col flex-wrap w-[10rem] gap-2 mt-5 ${style}`}>
+      <div
+        className={`flex flex-col flex-wrap w-[10rem] gap-2 mt-5 h-[7.5rem] ${style}`}
+      >
         {registers.map((inputRegisters: any, index: number) => (
           <input
             key={index}
@@ -37,10 +50,12 @@ const InputFields = ({
       </div>
       <div className="flex flex-row justify-center mt-8">
         <button
-          className="text-white py-1 px-3 bg-blue-500 rounded-sm text-sm"
+          className={`text-white py-1 px-3  ${
+            isSubmitted ? "bg-green-700" : "bg-blue-500"
+          } rounded-sm text-sm`}
           onClick={() => handleLocalSubmit()}
         >
-          Submit
+          {isSubmitted ? "Submitted" : "Submit"}
         </button>
       </div>
     </div>

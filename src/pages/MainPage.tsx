@@ -1,12 +1,12 @@
 import { useOutletContext } from "react-router-dom";
-import MenuButton from "../components/menu-button";
+import MenuButton from "../components/main-page/menu-button";
 
 const MainPage = () => {
   const [setHeaderMessage]: any = useOutletContext();
 
   return (
     <>
-      <div className="flex flex-col w-full bg-blueDarkest h-[90%]">
+      <div className="flex flex-col w-full bg-blueDarkest h-[90%] overflow-auto">
         <div className="flex flex-row justify-between p-20 divide-x-2 divide-blackHeader">
           <div className="flex flex-col items-center pb-32 pt-5 w-1/2">
             <span className="text-white text-2xl mb-20">Mang-aawit</span>
