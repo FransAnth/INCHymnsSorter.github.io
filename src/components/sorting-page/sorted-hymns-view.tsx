@@ -1,6 +1,6 @@
 import sortingConditions from "../../data/sorting-conditions/sorting-condition.json";
 
-const SortedHymnsDisplay = ({ sortedHymns }: any) => {
+const SortedHymnsView = ({ sortedHymns }: any) => {
   const content: any = [];
 
   sortedHymns.forEach((hymnCollection: any) => {
@@ -23,12 +23,12 @@ const SortedHymnsDisplay = ({ sortedHymns }: any) => {
           </thead>
           <tbody>
             {sortingConditions.map((condition: any, index: number) => (
-              <tr>
+              <tr key={index}>
                 <td>
                   <div className="px-10">{condition.id}</div>
                 </td>
                 {content.map((hymnCollection: any, index: number) => (
-                  <td className="px-8 bg-blueLigthest">
+                  <td key={index} className="px-8 bg-blueLigthest">
                     {hymnCollection[condition.id].length != 0 ? (
                       <div className="flex flex-col items-center py-5">
                         {hymnCollection[condition.id].map(
@@ -53,4 +53,4 @@ const SortedHymnsDisplay = ({ sortedHymns }: any) => {
   );
 };
 
-export default SortedHymnsDisplay;
+export default SortedHymnsView;

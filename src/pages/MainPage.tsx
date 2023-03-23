@@ -7,8 +7,8 @@ const MainPage = () => {
   return (
     <>
       <div className="flex flex-col w-full bg-blueDarkest h-[90%] overflow-auto">
-        <div className="flex flex-row justify-between p-20 divide-x-2 divide-blackHeader">
-          <div className="flex flex-col items-center pb-32 pt-5 w-1/2">
+        <div className="flex flex-row justify-center p-20 divide-x-2 divide-blackHeader">
+          {/* <div className="flex flex-col items-center pb-32 pt-5 w-1/2">
             <span className="text-white text-2xl mb-20">Mang-aawit</span>
             <div className="flex flex-col items-center gap-14">
               <div className="flex flex-row justify-center gap-20 w-full">
@@ -47,9 +47,9 @@ const MainPage = () => {
                 />
               </div>
             </div>
-          </div>
-          <div className="flex flex-col items-center pb-32 pt-5 w-1/2">
-            <span className="text-white text-2xl mb-20">Organista</span>
+          </div> */}
+          <div className="flex flex-col items-center pb-10 pt-5 w-1/2">
+            <span className="text-white text-2xl mb-20">Organists</span>
             <div className="flex flex-col items-center gap-14">
               <div className="flex flex-row justify-center gap-20 w-full">
                 <MenuButton
@@ -65,8 +65,8 @@ const MainPage = () => {
                   setHeaderMessage={setHeaderMessage}
                 />
                 <MenuButton
-                  label="Children Worship Service"
-                  id="childrenWorshipService"
+                  label="Childrens Worship Service"
+                  id="childrensWorshipService"
                   isForOrganists={true}
                   setHeaderMessage={setHeaderMessage}
                 />

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import sortingCondition from "../data/sorting-conditions/sorting-condition.json";
+import sortingCondition from "../../data/sorting-conditions/sorting-condition.json";
 
 const InputFields = ({
   attributeName,

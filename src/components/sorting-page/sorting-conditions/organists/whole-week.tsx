@@ -1,4 +1,4 @@
-import InputFields from "../../../input-fields";
+import InputFields from "../../input-fields";
 
 const OrganistsWholeWeek = ({ sortedHymnsState }: any) => {
   const actualHymnInputHeight = "w-[120px]";

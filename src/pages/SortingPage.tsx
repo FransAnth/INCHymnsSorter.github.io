@@ -1,13 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
 import SortedWholeWeek from "../data/sorting-conditions/organists/whole-week.json";
-import OrganistsWholeWeek from "../components/sorting-page/sorting-conditions/organists/whole-week";
-import PageCommingSoon from "../components/main-page/page-comming-soon";
-import SortedHymnsDisplay from "../components/sorting-page/sort-view";
+import SortedHymnsView from "../components/sorting-page/sorted-hymns-view";
+import SortingPageContent from "../components/sorting-page/sorting-page-content";
+import {
+  DataModelWholeWeek,
+  DataModelSingleWorshipService,
+} from "../data/sorting-page-content-data";
 
 const SortingPage = () => {
   const [isSortNow, setIsSortnow] = useState(false);
   const [sortedHymns, setSortedHymns] = useState(SortedWholeWeek);
+  const [dataModel, setDataModel] = useState({});
 
   const [setMessage]: any = useOutletContext();
   const navigate = useNavigate();
@@ -29,6 +33,14 @@ const SortingPage = () => {
     setIsSortnow(submittedForms.length === sortedHymns.length);
   }, [sortedHymns]);
 
+  useEffect(() => {
+    if (id === "wholeWeekOrganist") {
+      setDataModel(DataModelWholeWeek);
+    } else if (id === "singleWorshipService") {
+      setDataModel(DataModelSingleWorshipService);
+    }
+  }, []);
+
   return (
     <div className="flex flex-col w-full bg-blueDarkest h-[90%] px-10 py-5 overflow-auto">
       <div className="flex flex-row w-full justify-end">
@@ -39,16 +51,15 @@ const SortingPage = () => {
           Go Back
         </button>
       </div>
-      <div className={id == "wholeWeekOrganist" ? "" : "hidden"}>
-        <OrganistsWholeWeek sortedHymnsState={[sortedHymns, setSortedHymns]} />
-      </div>
-      <div className={id != "wholeWeekOrganist" ? "" : "hidden"}>
-        <PageCommingSoon />
+      <div>
+        <SortingPageContent
+          sortedHymnsState={[sortedHymns, setSortedHymns]}
+          dataModel={dataModel}
+        />
       </div>
       <div className={isSortNow ? "" : "hidden"}>
-        <SortedHymnsDisplay sortedHymns={sortedHymns} />
+        <SortedHymnsView sortedHymns={sortedHymns} />
       </div>
-      {}
     </div>
   );
 };
