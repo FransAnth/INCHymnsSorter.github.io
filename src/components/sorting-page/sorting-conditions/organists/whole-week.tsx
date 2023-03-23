@@ -17,7 +17,7 @@ const OrganistsWholeWeek = ({ sortedHymnsState }: any) => {
   const preludeRegisters = generateRegisters(13);
 
   return (
-    <div className="flex flex-row justify-center gap-14 mt-20">
+    <div className="flex flex-row justify-center gap-32 mt-20">
       <div className="flex flex-col">
         <span className="text-white text-2xl">MidWeek</span>
         <div className="flex flex-row justify-center gap-10 pt-3 pb-10">
@@ -37,7 +37,6 @@ const OrganistsWholeWeek = ({ sortedHymnsState }: any) => {
           />
         </div>
       </div>
-      <div className="h-[100%] border-[1px] border-blackHeader" />
       <div className="flex flex-col">
         <span className="text-white text-2xl">Weekend</span>
         <div className="flex flex-row justify-center gap-10 pt-3 pb-10">

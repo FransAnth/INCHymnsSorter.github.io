@@ -19,7 +19,14 @@ const SortingPage = () => {
   }
 
   useEffect(() => {
-    console.log(sortedHymns);
+    let submittedForms: string[] = [];
+    sortedHymns.forEach((hymnCollection: any) => {
+      if (hymnCollection.isSubmitted) {
+        submittedForms.push(hymnCollection.id);
+      }
+    });
+
+    setIsSortnow(submittedForms.length === sortedHymns.length);
   }, [sortedHymns]);
 
   return (
@@ -32,11 +39,16 @@ const SortingPage = () => {
           Go Back
         </button>
       </div>
-      {id == "wholeWeekOrganist" ? (
+      <div className={id == "wholeWeekOrganist" ? "" : "hidden"}>
         <OrganistsWholeWeek sortedHymnsState={[sortedHymns, setSortedHymns]} />
-      ) : null}
-      {id != "wholeWeekOrganist" ? <PageCommingSoon /> : null}
-      {isSortNow ? <SortedHymnsDisplay sortedHymns={sortedHymns} /> : null}
+      </div>
+      <div className={id != "wholeWeekOrganist" ? "" : "hidden"}>
+        <PageCommingSoon />
+      </div>
+      <div className={isSortNow ? "" : "hidden"}>
+        <SortedHymnsDisplay sortedHymns={sortedHymns} />
+      </div>
+      {}
     </div>
   );
 };

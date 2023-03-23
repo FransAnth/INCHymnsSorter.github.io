@@ -15,15 +15,20 @@ const InputFields = ({
 
   function handleLocalSubmit() {
     const formValue = getValues();
-    const tempSortedHymns = { ...sortedHymns };
+    const tempSortedHymns = [...sortedHymns];
     registers.forEach((name: any) => {
       const value = formValue[name];
-      sortingCondition.forEach((data: any, index: number) => {
+      sortingCondition.forEach((sortConditions: any, index: number) => {
         if (
-          Number(value) < data.condition[1] &&
-          Number(value) >= data.condition[0]
+          Number(value) < sortConditions.condition[1] &&
+          Number(value) >= sortConditions.condition[0]
         ) {
-          tempSortedHymns[attributeName][data.id].push(value);
+          tempSortedHymns.forEach((hymnCollection: any) => {
+            if (hymnCollection.id === attributeName) {
+              hymnCollection.data[sortConditions.id].push(value);
+              hymnCollection.isSubmitted = true;
+            }
+          });
         }
       });
     });
