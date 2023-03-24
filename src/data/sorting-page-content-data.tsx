@@ -40,13 +40,33 @@ export const DataModelSingleWorshipService = [
     name: "Single Worship Service",
     properties: [
       {
-        attributeName: "hymnSingingMidweek",
+        attributeName: "hymnSinging",
         title: "Hymn Singing",
         inputHeight: "w-[120px]",
         registerCount: 6,
       },
       {
-        attributeName: "preludesMidweek",
+        attributeName: "preludes",
+        title: "Preludes",
+        inputHeight: "w-[312px]",
+        registerCount: 13,
+      },
+    ],
+  },
+];
+
+export const DataModelChildrensWorshipService = [
+  {
+    name: "Childrens Worship Service",
+    properties: [
+      {
+        attributeName: "hymnSinging",
+        title: "Hymn Singing",
+        inputHeight: "w-[120px]",
+        registerCount: 6,
+      },
+      {
+        attributeName: "preludes",
         title: "Preludes",
         inputHeight: "w-[312px]",
         registerCount: 13,

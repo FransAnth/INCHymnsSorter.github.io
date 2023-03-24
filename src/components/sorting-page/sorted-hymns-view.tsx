@@ -1,11 +1,16 @@
-import sortingConditions from "../../data/sorting-conditions/sorting-condition.json";
+interface ISortedHymns {
+  sortedHymns: any;
+  sortingCondition: any;
+}
 
-const SortedHymnsView = ({ sortedHymns }: any) => {
+const SortedHymnsView = ({ sortedHymns, sortingCondition }: ISortedHymns) => {
   const content: any = [];
 
-  sortedHymns.forEach((hymnCollection: any) => {
-    content.push(hymnCollection.data);
-  });
+  if (sortedHymns.length) {
+    sortedHymns.forEach((hymnCollection: any) => {
+      content.push(hymnCollection.data);
+    });
+  }
 
   return (
     <div className="flex justify-center w-full mt-32">
@@ -22,7 +27,7 @@ const SortedHymnsView = ({ sortedHymns }: any) => {
             </tr>
           </thead>
           <tbody>
-            {sortingConditions.map((condition: any, index: number) => (
+            {sortingCondition.map((condition: any, index: number) => (
               <tr key={index}>
                 <td>
                   <div className="px-10">{condition.id}</div>
@@ -33,7 +38,7 @@ const SortedHymnsView = ({ sortedHymns }: any) => {
                       <div className="flex flex-col items-center py-5">
                         {hymnCollection[condition.id].map(
                           (values: any, index: number) => (
-                            <div>{values}</div>
+                            <div key={index}>{values}</div>
                           )
                         )}
                       </div>

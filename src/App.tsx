@@ -6,8 +6,6 @@ import MainPage from "./pages/MainPage";
 import SortingPage from "./pages/SortingPage";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <Suspense>

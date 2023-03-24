@@ -1,6 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
-import sortingCondition from "../../data/sorting-conditions/sorting-condition.json";
+
+interface IInputFields {
+  attributeName: string;
+  registers: any;
+  title: string;
+  style: string;
+  sortedHymnsState: any;
+  sortingCondition: any;
+}
 
 const InputFields = ({
   attributeName,
@@ -8,7 +16,8 @@ const InputFields = ({
   title,
   style,
   sortedHymnsState,
-}: any) => {
+  sortingCondition,
+}: IInputFields) => {
   const { register, getValues } = useForm();
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [sortedHymns, setSortedHymns] = sortedHymnsState;

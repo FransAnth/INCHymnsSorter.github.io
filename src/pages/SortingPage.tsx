@@ -1,18 +1,31 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useOutletContext, useParams } from "react-router-dom";
-import SortedWholeWeek from "../data/sorting-conditions/organists/whole-week.json";
 import SortedHymnsView from "../components/sorting-page/sorted-hymns-view";
 import SortingPageContent from "../components/sorting-page/sorting-page-content";
+import { useSortedHymnsData } from "../local-storage/sorting-hymns-storage";
+import {
+  WholeWeekCollection,
+  singleWorshipServiceCollection,
+  childrensWorshipServiceCollection,
+} from "../data/sorted-hymns-collection";
 import {
   DataModelWholeWeek,
   DataModelSingleWorshipService,
+  DataModelChildrensWorshipService,
 } from "../data/sorting-page-content-data";
+import {
+  AdultWorshipServiceConditions,
+  ChildrensWorshipServiceConditions,
+} from "../data/sorting-condition";
 
 const SortingPage = () => {
   const [isSortNow, setIsSortnow] = useState(false);
-  const [sortedHymns, setSortedHymns] = useState(SortedWholeWeek);
   const [dataModel, setDataModel] = useState({});
-
+  const [sortedHymns, setSortedHymns] = useSortedHymnsData((state) => [
+    state.sortedHymns,
+    state.setSortedHymns,
+  ]);
+  const [sortingCondition, setSortingCondition] = useState<any[]>([]);
   const [setMessage]: any = useOutletContext();
   const navigate = useNavigate();
   const { id } = useParams();
@@ -23,21 +36,18 @@ const SortingPage = () => {
   }
 
   useEffect(() => {
-    let submittedForms: string[] = [];
-    sortedHymns.forEach((hymnCollection: any) => {
-      if (hymnCollection.isSubmitted) {
-        submittedForms.push(hymnCollection.id);
-      }
-    });
-
-    setIsSortnow(submittedForms.length === sortedHymns.length);
-  }, [sortedHymns]);
-
-  useEffect(() => {
     if (id === "wholeWeekOrganist") {
+      setSortedHymns(WholeWeekCollection);
       setDataModel(DataModelWholeWeek);
+      setSortingCondition(AdultWorshipServiceConditions);
     } else if (id === "singleWorshipService") {
+      setSortedHymns(singleWorshipServiceCollection);
       setDataModel(DataModelSingleWorshipService);
+      setSortingCondition(AdultWorshipServiceConditions);
+    } else if (id === "childrensWorshipService") {
+      setSortedHymns(childrensWorshipServiceCollection);
+      setDataModel(DataModelChildrensWorshipService);
+      setSortingCondition(ChildrensWorshipServiceConditions);
     }
   }, []);
 
@@ -53,12 +63,16 @@ const SortingPage = () => {
       </div>
       <div>
         <SortingPageContent
-          sortedHymnsState={[sortedHymns, setSortedHymns]}
           dataModel={dataModel}
+          setIsSortnow={setIsSortnow}
+          sortingCondition={sortingCondition}
         />
       </div>
       <div className={isSortNow ? "" : "hidden"}>
-        <SortedHymnsView sortedHymns={sortedHymns} />
+        <SortedHymnsView
+          sortedHymns={sortedHymns}
+          sortingCondition={sortingCondition}
+        />
       </div>
     </div>
   );
